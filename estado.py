@@ -1,14 +1,20 @@
 """
  Classe que representa o estado
 """
+from copy import deepcopy
 
 
 class Estado:
-    def __init__(self, numero_salas=3, posicao_aspirador=0):
+    def __init__(self, numero_salas=3, posicao_aspirador=0, estado: 'Estado' = None):
         """
         Salas = [False, False, False]
         cada index do array é uma sala, sendo 0 para limpo 1 para sujo
         """
+
+        if estado:
+            self.__dict__.update(deepcopy(estado).__dict__)
+            return
+
         self.numero_salas = numero_salas
         self.salas = [True for i in range(self.numero_salas)]
         self.posicao_aspirador = posicao_aspirador
@@ -39,4 +45,3 @@ class Estado:
 
     def __eq__(self, other):
         return self.salas == other.salas and self.posicao_aspirador == other.posicao_aspirador
-

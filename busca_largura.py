@@ -1,6 +1,5 @@
 from estado import Estado
 from problema import Problema
-from copy import deepcopy
 
 
 class BuscaLargura:
@@ -10,11 +9,11 @@ class BuscaLargura:
         self.fila = []
 
     def resolver(self):
-        self.visitados.append(problema.get_estado_atual())
-        self.fila.append(problema.get_estado_atual())
+        self.visitados.append(problema.estado_atual)
+        self.fila.append(problema.estado_atual)
 
         while not self.problema.resolvido:
-            estado_pai = deepcopy(self.fila[0])
+            estado_pai = Estado(estado=self.fila[0])
             print(estado_pai)
             try:
                 self.problema.mover_esquerda()
@@ -39,8 +38,8 @@ class BuscaLargura:
             exit(0)
 
         if problema.estado_atual not in self.visitados:
-            self.visitados.append(problema.get_estado_atual())
-            self.fila.append(problema.get_estado_atual())
+            self.visitados.append(problema.estado_atual)
+            self.fila.append(problema.estado_atual)
         self.problema.resetar_estado(pai)
 
 
