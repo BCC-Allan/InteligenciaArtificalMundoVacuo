@@ -15,7 +15,6 @@ class Estado:
 
     def icrementar_posicao(self):
         self.posicao_aspirador += 1
-        pass
 
     def decrementar_posicao(self):
         self.posicao_aspirador -= 1
@@ -30,10 +29,14 @@ class Estado:
 
     def __str__(self):
         salas = [
-            f'[X]{self.salas[i]}'
+            f'[X] {str(self.salas[i]).rjust(5, " ")}'
             if self.posicao_aspirador == i
-            else f'[ ] {self.salas[i]}'
+            else f'[ ] {str(self.salas[i]).rjust(5, " ")}'
             for i in range(self.numero_salas)
         ]
 
         return ' | '.join(salas)
+
+    def __eq__(self, other):
+        return self.salas == other.salas and self.posicao_aspirador == other.posicao_aspirador
+
