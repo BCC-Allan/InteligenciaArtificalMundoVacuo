@@ -30,9 +30,9 @@ class Estado:
 
     def __str__(self):
         salas = [
-            f'[X]{self.salas[i]}'
+            f'[X] {str(self.salas[i]).rjust(5, " ")}'
             if self.posicao_aspirador == i
-            else f'[ ] {self.salas[i]}'
+            else f'[ ] {str(self.salas[i]).rjust(5, " ")}'
             for i in range(self.numero_salas)
         ]
 

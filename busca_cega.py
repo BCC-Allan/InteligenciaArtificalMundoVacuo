@@ -8,7 +8,9 @@ class BuscaCega:
     def resolver(self):
         # true == esquerda false == direira
         flag_direcao = True
+        acc = 0
         while not self.problema.resolvido:
+            acc += 1
             self.problema.aspirar()
             try:
                 if flag_direcao:
@@ -18,11 +20,15 @@ class BuscaCega:
             except ValueError:
                 flag_direcao = not flag_direcao
                 continue
-        print("\nPROBLEMA FINALIZADO")
+
+        self.final(add=f"Rodadas: {acc}")
+
+    def final(self, add=''):
+        print(f"\nPROBLEMA FINALIZADO | {add}")
         print(self.problema.estado_atual)
 
 
 if __name__ == '__main__':
-    problema = Problema(3, 1)
+    problema = Problema(5, 1)
     busca_cega = BuscaCega(problema)
     busca_cega.resolver()

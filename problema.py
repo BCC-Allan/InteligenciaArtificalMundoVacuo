@@ -23,8 +23,27 @@ class Problema:
 
     def aspirar(self):
         self.estado_atual.trocar_estado()
-        print(self.estado_atual)
+        print(f'---- {self.estado_atual} ----')
+
+    @property
+    def posicao_atual(self):
+        return self.estado_atual.posicao_aspirador
 
     @property
     def resolvido(self):
         return self.estado_atual.teste_objetivo
+
+    def pode_direita(self):
+        return self.estado_atual.posicao_aspirador == self.estado_atual.numero_salas - 1
+
+    def pode_esquerda(self):
+        return self.estado_atual.posicao_aspirador == 0
+
+    def aspirado(self):
+        return self.estado_atual.salas[self.posicao_atual]
+
+    def esquerda_visto(self):
+        return not self.estado_atual.salas[0]
+
+    def direita_visto(self):
+        return not self.estado_atual.salas[-1]
