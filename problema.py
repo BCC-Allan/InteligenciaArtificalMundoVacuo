@@ -5,9 +5,10 @@
 from estado import Estado
 from OperacaoInvalidaError import OperacaoInvalidaError
 
+
 class Problema:
-    def __init__(self, numero_salas=3, posicao_aspirador=0, novo_estado: Estado = None):
-        self.estado_atual = Estado(novo_estado) if novo_estado else Estado(numero_salas, posicao_aspirador)
+    def __init__(self, numero_salas=3, posicao_aspirador=0):
+        self.estado_atual = Estado(numero_salas, posicao_aspirador)
 
     # operadores
     def mover_esquerda(self):
