@@ -10,7 +10,7 @@ class EstadoComProfundidade(Estado):
         if estado:
             self.__dict__.update(deepcopy(estado).__dict__)
             return
-        super().__init__(numero_salas, posicao_aspirador, estado)
+        super().__init__(numero_salas, posicao_aspirador)
         self.nivel_profundidade = nivel_profundidade
         self.estado_atual = Estado(numero_salas, posicao_aspirador)
 
