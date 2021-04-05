@@ -1,4 +1,5 @@
-from OperacaoInvalidaError import OperacaoInvalidaError
+from exceptions.OperacaoInvalidaError import OperacaoInvalidaError
+from exceptions.ProblemaImpossivelError import ProblemaImpossivelError
 from EstadoComProfundidade import EstadoComProfundidade
 from ProblemaComProfundidade import ProblemaComProfundidade
 
@@ -20,7 +21,6 @@ class BuscaProfundidadeLimitada:
             estado_pai = EstadoComProfundidade(estado=self.pilha.pop())
 
             if estado_pai.nivel_profundidade == self.limite:
-                print('\n')
                 print(f'Nó de de profundidade {self.limite}')
                 print(estado_pai)
                 print("Voltando na pilha...\n")
@@ -70,11 +70,10 @@ class BuscaProfundidadeLimitada:
 
     def verificar_problema_impossivel(self):
         if not self.pilha:  # pilha vazia
-            print(f"Não foi possivel resolver o problema com limite de {self.limite}")
-            exit(0)
+            raise ProblemaImpossivelError(f'O limite de {self.limite} é muito pequeno')
 
 
 if __name__ == '__main__':
     problema = ProblemaComProfundidade(5, 2)
-    busca_cega = BuscaProfundidadeLimitada(problema, 12)
+    busca_cega = BuscaProfundidadeLimitada(problema, 10)
     busca_cega.resolver()

@@ -3,7 +3,7 @@
 # Teste objetivo
 # custo do caminho
 from Estado import Estado
-from OperacaoInvalidaError import OperacaoInvalidaError
+from exceptions.OperacaoInvalidaError import OperacaoInvalidaError
 
 
 class Problema:

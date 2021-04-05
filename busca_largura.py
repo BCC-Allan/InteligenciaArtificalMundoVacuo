@@ -1,4 +1,4 @@
-from OperacaoInvalidaError import OperacaoInvalidaError
+from exceptions.OperacaoInvalidaError import OperacaoInvalidaError
 from Estado import Estado
 from Problema import Problema
 
