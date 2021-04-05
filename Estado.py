@@ -8,7 +8,7 @@ class Estado:
     def __init__(self, numero_salas=3, posicao_aspirador=0, estado: 'Estado' = None):
         """
         Salas = [False, False, False]
-        cada index do array é uma sala, sendo 0 para limpo 1 para sujo
+        cada index do array é uma sala, sendo False para limpo True para sujo
         """
 
         if estado:
