@@ -38,9 +38,9 @@ class BuscaProfundidade:
     def registrar_novo_estado(self, pai: Estado):
         self.vericar_se_resolvido()
 
-        if problema.estado_atual not in self.visitados:
-            self.pilha.append(problema.estado_atual)
-            self.visitados.append(problema.estado_atual)
+        if self.problema.estado_atual not in self.visitados:
+            self.pilha.append(self.problema.estado_atual)
+            self.visitados.append(self.problema.estado_atual)
 
         self.problema.resetar_estado(pai)
 
@@ -52,10 +52,13 @@ class BuscaProfundidade:
             print("\n")
             for visitado in self.caminho:
                 print(visitado)
-            exit(0)
+            raise StopIteration
 
 
 if __name__ == '__main__':
     problema = Problema(5, 2)
     busca_cega = BuscaProfundidade(problema)
-    busca_cega.resolver()
+    try:
+        busca_cega.resolver()
+    except StopIteration:
+        print("fim")

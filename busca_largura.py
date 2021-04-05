@@ -46,7 +46,7 @@ class BuscaLargura:
             print("\n")
             for visitado in self.visitados:
                 print(visitado)
-            exit(0)
+            raise StopIteration
 
         if problema.estado_atual not in self.visitados:
             # print("novo estado na fila")
@@ -58,4 +58,7 @@ class BuscaLargura:
 if __name__ == '__main__':
     problema = Problema(3, 1)
     busca_cega = BuscaLargura(problema)
-    busca_cega.resolver()
+    try:
+        busca_cega.resolver()
+    except StopIteration:
+        print("fim")

@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 from exceptions.OperacaoInvalidaError import OperacaoInvalidaError
 from exceptions.ProblemaImpossivelError import ProblemaImpossivelError
 from EstadoComProfundidade import EstadoComProfundidade
@@ -6,15 +8,15 @@ from ProblemaComProfundidade import ProblemaComProfundidade
 
 class BuscaProfundidadeLimitada:
     def __init__(self, problema: ProblemaComProfundidade, limite: int):
-        self.problema = problema
+        self.problema = deepcopy(problema)
         self.visitados = []
         self.caminho = []
         self.pilha = []
         self.limite = limite
 
     def resolver(self):
-        self.pilha.append(EstadoComProfundidade(estado=problema.estado_atual))
-        self.visitados.append(EstadoComProfundidade(estado=problema.estado_atual))
+        self.pilha.append(EstadoComProfundidade(estado=self.problema.estado_atual))
+        self.visitados.append(EstadoComProfundidade(estado=self.problema.estado_atual))
         while True:
             self.verificar_problema_impossivel()
 
@@ -46,9 +48,9 @@ class BuscaProfundidadeLimitada:
     def registrar_novo_estado(self, pai: EstadoComProfundidade):
         self.vericar_se_resolvido()
 
-        if problema.estado_atual not in self.visitados:
-            self.pilha.append(problema.estado_atual)
-            self.visitados.append(problema.estado_atual)
+        if self.problema.estado_atual not in self.visitados:
+            self.pilha.append(self.problema.estado_atual)
+            self.visitados.append(self.problema.estado_atual)
 
         self.problema.resetar_estado(pai)
 
@@ -56,6 +58,7 @@ class BuscaProfundidadeLimitada:
         if self.problema.resolvido:
             self.caminho.append(self.problema.estado_atual)
             self.mostrar_resultados()
+            raise StopIteration
 
     def mostrar_resultados(self):
         maxima_profundidade = max([estado.nivel_profundidade for estado in self.caminho])
@@ -66,7 +69,6 @@ class BuscaProfundidadeLimitada:
         print("\n")
         for visitado in self.caminho:
             print(visitado)
-        exit(0)
 
     def verificar_problema_impossivel(self):
         if not self.pilha:  # pilha vazia
@@ -75,5 +77,8 @@ class BuscaProfundidadeLimitada:
 
 if __name__ == '__main__':
     problema = ProblemaComProfundidade(5, 2)
-    busca_cega = BuscaProfundidadeLimitada(problema, 10)
-    busca_cega.resolver()
+    busca_cega = BuscaProfundidadeLimitada(problema, limite=12)
+    try:
+        busca_cega.resolver()
+    except StopIteration:
+        print("fim")
