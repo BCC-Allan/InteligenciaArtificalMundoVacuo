@@ -2,7 +2,7 @@
 # Operadores
 # Teste objetivo
 # custo do caminho
-from estado import Estado
+from Estado import Estado
 from OperacaoInvalidaError import OperacaoInvalidaError
 
 
@@ -19,7 +19,7 @@ class Problema:
     def mover_direira(self):
         if self.estado_atual.posicao_aspirador == self.estado_atual.numero_salas - 1:
             raise OperacaoInvalidaError('ir para a esquerda')
-        self.estado_atual.icrementar_posicao()
+        self.estado_atual.incrementar_posicao()
 
     def aspirar(self):
         self.estado_atual.trocar_estado()

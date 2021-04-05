@@ -1,5 +1,5 @@
 from busca_cega import BuscaCega
-from problema import Problema
+from Problema import Problema
 
 
 def teste():

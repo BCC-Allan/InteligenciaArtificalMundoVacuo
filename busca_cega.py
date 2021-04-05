@@ -1,4 +1,4 @@
-from problema import Problema
+from Problema import Problema
 
 
 class BuscaCega:

@@ -19,7 +19,7 @@ class Estado:
         self.salas = [True for i in range(self.numero_salas)]
         self.posicao_aspirador = posicao_aspirador
 
-    def icrementar_posicao(self):
+    def incrementar_posicao(self):
         self.posicao_aspirador += 1
 
     def decrementar_posicao(self):

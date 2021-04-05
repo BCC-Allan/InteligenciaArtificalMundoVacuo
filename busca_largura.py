@@ -1,6 +1,6 @@
 from OperacaoInvalidaError import OperacaoInvalidaError
-from estado import Estado
-from problema import Problema
+from Estado import Estado
+from Problema import Problema
 
 
 class BuscaLargura:
