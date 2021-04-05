@@ -1,6 +1,6 @@
 from Problema import Problema
 from exceptions.OperacaoInvalidaError import OperacaoInvalidaError
-
+from functools import reduce
 
 class ProblemaHeuristico(Problema):
     SALA_LIMPA = False
